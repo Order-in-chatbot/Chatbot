@@ -1,18 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" ?> 
-<!DOCTYPE configuration 
-         PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
-         "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
-
-<configuration> 
-
-	<!-- DB접속 정보 값을 가지고 있는 파일  -->
-    <typeAliases> 
-        <typeAlias type="com.project.chatbot.domain.StoreVO" alias="StoreVO"/>    
-    </typeAliases>
-    
-    <!-- SQL문 정의한 파일 포함 -->
-   <!--  <mappers>
-    	<mapper resource="mappers/store/storeMapper.xml"/>
-    </mappers> -->
-     
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+ 
 </configuration>

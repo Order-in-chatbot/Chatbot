@@ -1,4 +1,5 @@
 package com.project.chatbot;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -6,8 +7,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
  
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+ 
+import org.junit.Test;
 
 public class MySQLConnectionTest {
+	
+	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	static final String DRIVER = "com.mysql.jdbc.Driver";
     static final String URL = "jdbc:mysql://127.0.0.1:3306/fallinorder?useSSL=false";
     static final String USERNAME = "root";
@@ -21,7 +29,7 @@ public class MySQLConnectionTest {
         
         try {
             
-            System.out.println("==================== MySQL Connection START ====================");
+            logger.info("==================== MySQL Connection START ====================");
             
             Class.forName(DRIVER);
             
@@ -38,10 +46,10 @@ public class MySQLConnectionTest {
                 String phone = rs.getString("phone");
                 String address = rs.getString("address");
  
-                System.out.print("storeno : " + storeno + ", ");
-                System.out.print("storename : " + storename + ", ");
-                System.out.println("phone : " + phone+",");
-                System.out.println("address : " + address);
+                logger.info("storeno : " + storeno + ", ");
+                logger.info("storename : " + storename + ", ");
+                logger.info("phone : " + phone+",");
+                logger.info("address : " + address);
                 
             }
  
@@ -70,6 +78,6 @@ public class MySQLConnectionTest {
             }
         }
         
-        System.out.println("==================== MySQL Connection END ====================");
+        logger.info("==================== MySQL Connection END ====================");
     }
 }
