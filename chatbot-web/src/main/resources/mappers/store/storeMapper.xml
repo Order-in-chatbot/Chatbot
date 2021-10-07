@@ -5,4 +5,8 @@
 
 <mapper namespace="com.project.chatbot.mappers.store.storeMapper">
 
+	<select id="storelist" resultType="StoreVO">
+		select * from fallinorder
+	</select>
+
 </mapper>
