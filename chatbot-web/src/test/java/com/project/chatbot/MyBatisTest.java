@@ -23,15 +23,15 @@ public class MyBatisTest {
     @Test
     public void MyBatisSessionTest() throws Exception {
  
-        SqlSession sessios = null;
+        SqlSession sessions = null;
  
         try {
  
             logger.debug("sqlSessionFactory : [{}]", sqlSessionFactory);
  
-            sessios = sqlSessionFactory.openSession();
+            sessions = sqlSessionFactory.openSession();
  
-            logger.debug("sessios : [{}]", sessios);
+            logger.debug("sessios : [{}]", sessions);
  
         } catch (Exception e) {
  
