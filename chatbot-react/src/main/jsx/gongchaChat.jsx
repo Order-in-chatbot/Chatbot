@@ -103,8 +103,8 @@ const Messenger = () =>{
     useEffect(openChat,[]);
 
     return(
-        <Chat
-            title="pennya6 Chatbot"
+        <gongchaChat
+            title="GongCha"
             user={{id : 'chatbot'}}
             messages={messages}
             //()=> 함수 표시 필수
