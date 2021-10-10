@@ -3,15 +3,16 @@
           PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.chatbot.mappers.store.storeMapper">
+<mapper namespace="com.project.chatbot.mappers.bestmenu.bestmenuMapper">
 
-	<select id="storefind" resultType="storeVOResultMap">
-		select storename
-		from store_list
+	<select id="bestmenufind" resultType="orderVOResultMap">
+		select max(hamburger)
+		from order_list
 		where storeno=#{storeno}
+		group by storeno
 	</select>
 	
-	<resultMap type="com.project.chatbot.domain.StoreVO" id="storeVOResultMap">
+	<resultMap type="com.project.chatbot.domain.OrderVO" id="orderVOResultMap">
 		<result property="storename" column="storename"/>
 	</resultMap>
 	

@@ -3,85 +3,78 @@ package com.project.chatbot.controller;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.chatbot.service.ChatService;
 
-
-//의존성 주입
 @RestController
 public class ChatController {
 	
-	private static final Logger logger=LoggerFactory.getLogger(ChatController.class);
-	
-	@Autowired ChatService chatService;
-	
+	@Autowired ChatService chatService;	
+		
 	@CrossOrigin("*")
-	@PostMapping(value="/chat/open")
-	public Map open(@RequestBody Map data) {
+	@PostMapping(value = "/chat/open")
+	public Map<String, Object> open(@RequestBody Map<String, Object> data) {
 		
-		String num=(String)data.get("num");
+		System.out.println(data);
+		Integer storeNum = (int) data.get("num");
 		
-		if(num.equals("1"))
-			System.out.println("서울지점");
-		else 
-			System.out.println("경기지점");
-
+		Map<String, Object> answer = new HashMap<String, Object>();
+		String message = "";
+		
+		//String storeName = chatService.getStoreInfo(storeNum);
+		//db에 저장된 지점코드랑 num이랑 일치하는지 확인해서 DB에서 select해온뒤
+		//storeName에 저장
+		
+		if(storeNum == 1) {
+			message = "어서오세요  서울지점 입니다.";
+		}
+		else if(storeNum == 2){
+			message = "어서오세요 경기지점 입니다.";
+		} else {
+			message = "잘못된 지점 번호 입니다.";
+		}
+		
+		answer.put("position", "left");
+		answer.put("type", "text");
+		answer.put("text", message);
+		answer.put("date", new Date());
+		
 		//return chatService.open();
-		
-		//Map 만들어서 리턴
+		return answer;
 	}
 	
-	
-	//요청이 들어오면 받아라
 	@CrossOrigin("*")
-	//method가 post이기 때문에 postmapping
-	@PostMapping(value="/chat/message") 
-	//requestmapping도 사용하기는 함
-	//단 getmapping하면 더 길이가 줌
-	public Map message(@RequestBody Map<String,Object>data,HttpServletRequest req) throws IOException{//Locale locale,Model model) {
-		//logger.info("메세지 불러오기");
-	
-		//System.out.println(data);
-		//자료구조 map
-		//Map map=new HashMap();
+	@PostMapping(value = "/chat/message")
+	public Map message(@RequestBody Map<String, Object> data, HttpServletRequest req) throws IOException {
+		//Utils.stream(chatService.tts(data), res.getOutputStream());
 		
-		//stt 구현
+		Map<String, Object> answer = new HashMap<String, Object>();
 		
-		return chatService.message(data,req);
-
+		String product = "빅맥"; // chatService.getBestSeller();   //select productName, count(*) from product where storeNum = 1 group by productName limit 1; 
+		String message = String.format("가장 많이 팔리는 제품은 %s 입니다.", product);
 		
-		/*
-		 * Map submap=new HashMap();
-		 * 
-		 * map.put("id", "chatbot"); map.put("text", "안녕 나는 챗봇이야"); map.put("createdAt",
-		 * new Date());
-		 * 
-		 * // user가 생긴게 다른 아이들과는 다르게 생김 //user : { // id:"user" //}
-		 * submap.put("id","user"); //id:"user"형식 //다시 넣기 map.put("user",submap);
-		 * 
-		 * System.out.println(map);
-		 * 
-		 * //자바에서만 인식하는 map구조 //content-type에 맞지 않는 타입으로 리턴되어서 404에러 //json타입으로 return
-		 * -> pom에서 추가
-		 */		//return map;
+		System.out.println(data);
+		Map question = (Map) data.get("question");
+		
+		if(question.get("text").equals("가장 많이 팔리는 제품 알려줘")) {
+			answer.put("position", "left");
+			answer.put("type", "text");
+			answer.put("text", message);
+			answer.put("date", new Date());
+		} else {
+			answer = chatService.message(data, req);
+		}
+		
+		
+		return answer;
 	}
-
 }
