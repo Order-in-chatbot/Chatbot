@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.8.3",
     "@untemps/react-vocal": "^1.7.4",
     "create-react-app": "^4.0.3",
+    "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-chat-elements": "^10.16.0",
     "react-dom": "^17.0.2",
