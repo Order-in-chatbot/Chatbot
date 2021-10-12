@@ -2,25 +2,24 @@ package com.project.chatbot.domain;
 
 public class StoreDTO {
 	private int storeno;
-	private boolean useCookie;
-	
+	private String storename;
 	public int getStoreno() {
 		return storeno;
 	}
 	public void setStoreno(int storeno) {
 		this.storeno = storeno;
 	}
-	public boolean isUseCookie() {
-		return useCookie;
+	public String getStorename() {
+		return storename;
 	}
-	public void setUseCookie(boolean useCookie) {
-		this.useCookie = useCookie;
+	public void setStorename(String storename) {
+		this.storename = storename;
 	}
-	
 	@Override
 	public String toString() {
-		return "StoreDTO [storeno=" + storeno + ", useCookie=" + useCookie + "]";
+		return "StoreVO [storeno=" + storeno + ", storename=" + storename + "]";
 	}
 	
 	
+
 }

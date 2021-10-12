@@ -4,6 +4,6 @@ import com.project.chatbot.domain.StoreDTO;
 import com.project.chatbot.domain.StoreVO;
 
 public interface StoreDAO {
+	StoreVO storefind(StoreDTO storeDTO)throws Exception;
 
-	StoreVO storefind(StoreDTO storeDTO) throws Exception;
 }

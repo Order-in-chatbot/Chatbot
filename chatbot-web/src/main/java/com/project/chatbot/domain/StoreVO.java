@@ -34,5 +34,6 @@ public class StoreVO {
 		return "StoreVO [storeno=" + storeno + ", storename=" + storename + ", phone=" + phone + ", address=" + address
 				+ "]";
 	}
+	
 
 }

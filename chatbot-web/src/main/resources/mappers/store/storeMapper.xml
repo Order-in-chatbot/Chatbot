@@ -5,15 +5,10 @@
 
 <mapper namespace="com.project.chatbot.mappers.store.storeMapper">
 
-	<select id="storefind" resultType="storeVOResultMap">
+	<select id="storefind" resultType="string">
 		select storename
 		from store_list
 		where storeno=#{storeno}
 	</select>
-	
-	<resultMap type="com.project.chatbot.domain.StoreVO" id="storeVOResultMap">
-		<result property="storename" column="storename"/>
-	</resultMap>
-	
 
 </mapper>
