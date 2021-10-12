@@ -16,6 +16,7 @@ import com.project.chatbot.service.StoreService;
 @Controller
 @RequestMapping("/store")
 public class StoreController {
+	
 	private final StoreService storeService;
 	
 	@Inject
@@ -25,6 +26,7 @@ public class StoreController {
 	
 	@RequestMapping(value="/storefind",method=RequestMethod.GET)
 		public String storeGET(@ModelAttribute("storeDTO") StoreDTO storeDTO) {
+			System.out.println(storeDTO.getStorename());
 			return "/store/storefind";
 		}
 	

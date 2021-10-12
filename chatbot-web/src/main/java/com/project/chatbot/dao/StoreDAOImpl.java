@@ -27,5 +27,8 @@ public class StoreDAOImpl implements StoreDAO {
 	public StoreVO storefind(StoreDTO storeDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+".storefind",storeDTO);
 	}
-}
 	
+	public void storefind(int storeno) {
+
+	}
+}

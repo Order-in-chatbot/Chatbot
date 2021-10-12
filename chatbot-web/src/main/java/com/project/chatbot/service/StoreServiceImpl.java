@@ -1,5 +1,7 @@
 package com.project.chatbot.service;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.project.chatbot.dao.StoreDAO;
-import com.project.chatbot.dao.StoreDAOImpl;
+import com.project.chatbot.dao.StoreDAO;
 import com.project.chatbot.domain.StoreDTO;
 import com.project.chatbot.domain.StoreVO;
 

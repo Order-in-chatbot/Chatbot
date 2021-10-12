@@ -5,7 +5,7 @@
 
 <mapper namespace="com.project.chatbot.mappers.store.storeMapper">
 
-	<select id="storefind" resultType="string">
+	<select id="storefind" parameterType="int" resultMap="StoreVO">
 		select storename
 		from store_list
 		where storeno=#{storeno}
