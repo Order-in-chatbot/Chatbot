@@ -14,14 +14,27 @@ const Main = () => {
     //TODO 버튼 클릭 시 매장별 챗봇 연결
     const history = useHistory();
 
+    const [nnn, setNnn] = React.useState('');
+    const restNum = (num) => {
+        console.log(num);
+        setNnn(num);
+        console.log(nnn);
+    };
+
+    const [restaurant, setRestaurant] = React.useState('');
+    const handleChange = (event) => {
+        setRestaurant(event.target.value);
+        restNum(event.target.value);
+    };
+
     const selectStore = (num) => {
-        if (num == 1) {
+        if (num === 1) {
             history.push({
                 pathname: "/sulbing",
                 props: { num: num }
             });
         }
-        else if (num == 2) {
+        else if (num === 2) {
             history.push({
                 pathname: "/mcdonalds",
                 props: { num: num }
@@ -33,22 +46,6 @@ const Main = () => {
                 props: { num: num }
             });
         }
-    };
-
-    const nnnnn=0;
-    // const restNum = (num) => {
-    //     // return num;
-    //     console.log(num)
-    //     nnnnn=num;
-    //     console.log(nnnnn);
-    // };
-    // const restNum = 3;
-
-    const [restaurant, setRestaurant] = React.useState('');
-
-    const handleChange = (event) => {
-        setRestaurant(event.target.value);
-        // restNum(event.target.value);
     };
 
     //항상return
@@ -67,23 +64,15 @@ const Main = () => {
                             id="demo-simple-select-filled"
                             value={restaurant}
                             label="restaurant"
-
-
-
                             onChange={handleChange}
-
-
                         >
-                            {/* <MenuItem value={1} onClick={()=>restNum(1)}>설빙</MenuItem>
-                            <MenuItem value={2} onClick={()=>restNum(2)}>맥도날드</MenuItem>
-                            <MenuItem value={3} onClick={()=>restNum(3)}>공차</MenuItem> */}
-
                             <MenuItem value={1} >설빙</MenuItem>
                             <MenuItem value={2} >맥도날드</MenuItem>
                             <MenuItem value={3} >공차</MenuItem>
+
                         </Select>
                     </FormControl>
-                    <IconButton size="large" aria-label="이동" onClick={() => selectStore(nnnnn)}><ChatIcon sx={{ fontSize: 36 }} /></IconButton>
+                    <IconButton size="large" aria-label="이동" onClick={() => selectStore(nnn)}><ChatIcon sx={{ fontSize: 36 }} /></IconButton>
                 </Grid>
             </Grid>
         </div>
