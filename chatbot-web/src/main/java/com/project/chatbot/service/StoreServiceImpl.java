@@ -26,7 +26,7 @@ public class StoreServiceImpl implements StoreService{
 	}
 	
 	@Override
-	public StoreVO storefind(int storeno){
+	public String storefind(int storeno){
 		return storeDAO.storefind(storeno);
 	}
 

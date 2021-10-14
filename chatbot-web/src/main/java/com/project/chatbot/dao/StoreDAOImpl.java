@@ -24,10 +24,9 @@ public class StoreDAOImpl implements StoreDAO {
 	}
 	
 	@Override
-	public StoreVO storefind(int storeno){
-		StoreVO storeVO=(StoreVO) sqlSessionTemplate.selectOne("storefind",storeno);
-		return storeVO;
-	}
+	public String storefind(int storeno){
+		return  sqlSessionTemplate.selectOne("storefind",storeno);
+}
 	
 	@Override
 	public List<StoreVO> list(){

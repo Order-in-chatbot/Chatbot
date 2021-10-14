@@ -9,7 +9,8 @@ import com.project.chatbot.domain.StoreVO;
 
 public interface StoreService {
 	
-	public abstract StoreVO storefind(int storeno);
+	
+	public abstract String storefind(int storeno);
 	public abstract List<StoreVO> list();
 
 }

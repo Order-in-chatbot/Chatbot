@@ -30,13 +30,14 @@ public class StoreController {
 		return storeService.list().toString();
 	}
 	
-	@RequestMapping(value="/storefind", method=RequestMethod.GET)
+	//, method=RequestMethod.GET
+	@RequestMapping(value="/storefind")
 	public String storefind() {
 		System.out.println("input :");
 		Scanner scanner=new Scanner(System.in);
 		int storeno=scanner.nextInt();
+		System.out.println(storeService.storefind(storeno));
 		return storeService.storefind(storeno).toString();
 	}
-	
 
 }
