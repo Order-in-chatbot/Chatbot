@@ -18,15 +18,20 @@ import com.project.chatbot.domain.StoreVO;
 @Service
 public class StoreServiceImpl implements StoreService{
 	
-	private final StoreDAO storeDAO;
+	@Resource
+	private StoreDAO storeDAO;
 	
-	@Inject
-	public StoreServiceImpl(StoreDAO storeDAO) {
-		this.storeDAO=storeDAO;
+	public StoreDAO getStoreDAO() {
+		return storeDAO;
 	}
+	
 	@Override
-	public StoreVO storefind(StoreDTO storeDTO)throws Exception{
-		return storeDAO.storefind(storeDTO);
+	public StoreVO storefind(int storeno){
+		return storeDAO.storefind(storeno);
 	}
 
+	@Override
+	public List<StoreVO> list(){
+		return storeDAO.list();
+	}
 }

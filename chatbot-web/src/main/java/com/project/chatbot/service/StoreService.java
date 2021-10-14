@@ -8,5 +8,8 @@ import com.project.chatbot.domain.StoreDTO;
 import com.project.chatbot.domain.StoreVO;
 
 public interface StoreService {
-	StoreVO storefind(StoreDTO storeDTO)throws Exception;
+	
+	public abstract StoreVO storefind(int storeno);
+	public abstract List<StoreVO> list();
+
 }
