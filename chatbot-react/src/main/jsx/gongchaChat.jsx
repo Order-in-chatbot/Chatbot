@@ -1,121 +1,118 @@
-import { useEffect, useState } from "react";
-import Chat, { message } from "react-simple-chat";
+import { useEffect, useState } from 'react';
 import 'react-simple-chat/src/components/index.css';
 import './gongchaChatStyle.scss';
 
-//react에서 api를 사용하는 방법으로 크게 Axios, Fetch api가 있다
+// RCE CSS
+import 'react-chat-elements/dist/main.css';
 
-//fetch() 함수 기본 틀
-//fetch()
-//.then(res=>res.json())
-//.then(res=>{
-//   data를 응답 받은 후의 로직 
-//});
-//
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import IconButton from '@mui/material/IconButton';
+import SendIcon from '@mui/icons-material/Send';
 
-const Messenger = () => {
+import { MessageList } from 'react-chat-elements'
+import { Input } from 'react-chat-elements'
 
-    //state란 -> 컴포넌트 내부에서 변경될 수 있는 값 
-    //함수형 컴포넌트가 useState라는 함수로 사용
+import Vocal from '@untemps/react-vocal'
 
-    //첫번째 파라미터는 '현재상태', 두번째는 '현재 상태를 바꿔주는 함수'
-    //setMessages는 message(현재상태)를 바꿔줄 함수
+const GongchaChat = ({ location }) => {
 
-    //처음 message 상태
-    //id값을 통해서 송신자, 수신자 판별
     //변수 선언
-    const [messages, setMessages] = useState([
-        //{
-        // id : 'chatbot',
-        //         //text: '안녕하세요 chatbot입니다.',
-        // createdAt : new Date(),
-        // user : {id:'user'}
-        //}
-    ]);
+    const [messages, setMessages] = useState([]);
     const [uuid, setUuid] = useState("");
+    const [storeNum, setStoreNum] = useState(location.props && location.props.num);
+    const [question, setQuestion] = useState("");
+    const [speech, setSpeech] = useState("");
 
-    //응답 만들기
-    //CORS : 도메인 또는 포트가 다른 서버의 자원을 요청하는 메커니즘
-    //함수선언
-    const getAnswer = (message) => {
-        //console.log("HI");
+    //함수 선언
+	const _onVocalStart = () => {
+		setQuestion('')
+	}
 
-        //처음 질문도 저장하기 위해서
-        setMessages([...messages, message]);
+	const _onVocalResult = (result) => {
+		setQuestion(result)
+	}
 
-        //ajax 짜기
+    const tts = (url) => {
+        var audio = document.createElement("Audio");
+        audio.src = "http://localhost:8080/chatbot/resources/tts/"+url; 
+        //window.URL.createObjectURL(stream);
+        audio.play();
+    }
+
+    const getAnswer = () => {
+
+        const answer = {
+            position: 'right',
+            type:'text',
+            text:question,
+            date:new Date()
+        };
+
+        setMessages([...messages, answer]); //질문
         const url = `http://localhost:8089/chatbot/chat/message`;
-
-        //Access-Control-Allow-Origin response 헤더를 추가
-
-        //자바스크립트를 사용하기 위해서 fetch사용
-        //fetch함수 기본 틀
-        //method가 post인 경우
-        //fetch()기본은 get이기 때문에 post인 경우에는 method정보를 인자로 넘겨주어야한다
-        fetch(url, {
-            //post,get,delete 등 4가지 메소드
-            method: "POST",
-            body: JSON.stringify({ //json형태를 string화 하기 위해서
-                question: message, uuid: uuid
-                //headers부분에 CORS문제 해결
-            }), headers: { 'Access-Control-Allow-Origin': "*", "Content-Type": "application/json" }
-        })
-            //보내고 나서 처리를 어떻게 할 것 인가?
-            //송신후에 받아와서 json형태로 만든다
+        fetch(url, {method:"POST", body: JSON.stringify({question:answer, uuid:uuid}), headers:{"Access-Control-Allow-Origin":"*", "Content-Type":"application/json"} })
             .then((res) => res.json())
-            //다시 데이터로 받아서 
             .then((data) => {
-                //메세지안에 저장하겠다
-                //답변 
-                setMessages(messages => [...messages, data]);
-            }).catch(() => { //오류 잡기
+                setMessages(messages => [...messages, data]); //답변
+                tts(data.ttsUrl);
+            }).catch(() => {
                 console.log("에러발생");
             });
     };
 
-    const openChat = (message) => {
-        //fetch 메소드 구현하기
-        console.log("openChat");
-
-        //setMessages([...messages,message]);
-        const url = `http://localhost:8089/chatbot/chat/open`;
-
-        fetch(url, {
-            method: "POST", body: JSON.stringify({ //json형태를 string화 하기 위해서
-                data: messages
-                //headers부분에 CORS문제 해결
-            }),
-            headers: { 'Access-Control-Allow-Origin': "*", "Content-Type": "application/json" }
-        })
+    const openChat = () => {
+        const url = `http://localhost:8080/chatbot/chat/open`;
+        fetch(url, {method:"POST", body: JSON.stringify({storeNum:storeNum}), headers:{"Access-Control-Allow-Origin":"*", "Content-Type":"application/json"}})
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.uuid)
+                console.log(data.uuid);
                 setUuid(data.uuid);
                 setMessages(messages => [...messages, data]);
+            }).catch(()=>{
+                console.log("에러발생");
             })
-            .catch(() => {
-                console.log("error");
-            });
-
     };
 
-
-    //첫화면 렌더링
-    //상태값을 바뀌면 호출
-    //처음들어오면 오픈챗 메소드를 탐
-    useEffect(openChat, []);
+    useEffect(openChat,[]);
+    useEffect(tts, [speech])
 
     return (
-        <div className="gongchaChatPage">
-            <gongchaChat
-                title="GongCha"
-                user={{ id: 'chatbot' }}
-                messages={messages}
-                //()=> 함수 표시 필수
-                onSend={(question) => getAnswer(question)}
-            />
+        <div>
+            <Card sx={{height:'96vh', marginTop:'1vh'}}>
+                <CardContent style={{backgroundColor:'brown', height:'82vh'}}>
+                    <MessageList
+                        className='message-list'
+                        lockable={true}
+                        toBottomHeight={'100%'}
+                        dataSource={messages}
+                    />
+                </CardContent>
+                <CardContent>
+                <div>
+		</div>
+                    <Input
+                        placeholder="메시지를 입력하시오"
+                        multiline={false}
+                        onChange={(e)=>setQuestion(e.target.value)}
+                        defaultValue={question}
+                        leftButtons={
+                            <Vocal
+                                onStart={_onVocalStart}
+                                onResult={_onVocalResult}
+                                lang="ko-KR"
+                            />
+                        }
+                        rightButtons={
+                            <div onClick={()=>getAnswer()}>
+                                <IconButton aria-label="전송" ><SendIcon/></IconButton>
+                            </div>
+                        }
+                    />
+                </CardContent>
+            </Card>
         </div>
     );
 };
 
-export default Messenger;
+export default GongchaChat;
