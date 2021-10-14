@@ -5,8 +5,15 @@
 
 <mapper namespace="com.project.chatbot.mappers.store.storeMapper">
 
-	<select id="storelist" resultType="StoreVO">
-		select * from fallinorder
+	<select id="storefind" parameterType="int" resultType="String">
+		select storename
+		from store_list
+		where storeno=#{storeno}
+	</select>
+	
+	<select id="list" resultType="storeVO">
+		SELECT STORENO,STORENAME
+		FROM store_list
 	</select>
 
 </mapper>
