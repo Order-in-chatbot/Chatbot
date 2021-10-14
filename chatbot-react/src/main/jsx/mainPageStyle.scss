@@ -1,0 +1,37 @@
+.mainPage {
+    display: flex;
+    justify-content: center;
+
+    .center {
+        margin-top: 20vh;
+        background-color: ivory;
+        padding-bottom: 50px;
+        padding-left: 70px;
+        padding-right: 70px;
+        border-radius: 10px;
+        opacity: 0.7;
+        .select {
+            display: flex;
+            justify-content: center;
+        }
+
+    }
+}
+.mainPage::after {
+    background: url(../resources/img/resImg.jpg) no-repeat center center fixed;
+    // background-size: cover;
+    height: 100%;
+    width: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.8;
+
+}
+
+.center::after {
+    opacity: 0.5;
+    z-index: -0.5;
+}
