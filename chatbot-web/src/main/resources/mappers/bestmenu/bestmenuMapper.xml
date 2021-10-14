@@ -5,17 +5,11 @@
 
 <mapper namespace="com.project.chatbot.mappers.bestmenu.bestmenuMapper">
 
-<!-- 	<select id="bestmenufind" resultType="orderVOResultMap">
+	<select id="bestmenufind" resultType="String">
 		select hamburger,count(hamburger)
 		from order_list
 		where storeno=#{storeno}
 		group by hamburger DESC limit 1
 
 	</select>
-	
-	<resultMap type="com.project.chatbot.domain.OrderVO" id="orderVOResultMap">
-		<result property="storename" column="storename"/>
-	</resultMap>
-	 -->
-
 </mapper>

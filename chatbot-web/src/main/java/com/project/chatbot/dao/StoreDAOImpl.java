@@ -9,7 +9,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.project.chatbot.domain.StoreDTO;
 import com.project.chatbot.domain.StoreVO;
 import com.project.chatbot.service.StoreService;
 

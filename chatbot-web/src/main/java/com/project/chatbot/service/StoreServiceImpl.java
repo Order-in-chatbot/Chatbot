@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.project.chatbot.dao.StoreDAO;
 import com.project.chatbot.dao.StoreDAO;
-import com.project.chatbot.domain.StoreDTO;
 import com.project.chatbot.domain.StoreVO;
 
 @Service
