@@ -11,5 +11,6 @@ public interface StoreService {
 	
 	public abstract String storefind(int storeno);
 	public abstract List<StoreVO> list();
+	public abstract String event(int storeno);
 
 }

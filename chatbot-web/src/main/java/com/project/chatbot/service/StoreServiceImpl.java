@@ -33,4 +33,9 @@ public class StoreServiceImpl implements StoreService{
 	public List<StoreVO> list(){
 		return storeDAO.list();
 	}
+	
+	@Override
+	public String event(int storeno) {
+		return storeDAO.event(storeno);
+	}
 }

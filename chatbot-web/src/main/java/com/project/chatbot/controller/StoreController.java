@@ -33,7 +33,6 @@ public class StoreController {
 		return storeService.list().toString();
 	}
 	
-	//, method=RequestMethod.GET
 	@RequestMapping(value="/storefind")
 	public String storefind() {
 		System.out.println("input :");
@@ -50,6 +49,16 @@ public class StoreController {
 		int storeno=scanner.nextInt();
 		System.out.println(orderService.bestmenufind(storeno));
 		return orderService.bestmenufind(storeno).toString();
+		
+	}
+	
+	@RequestMapping(value="/event")
+	public String event() {
+		System.out.println("storeno:");
+		Scanner scanner=new Scanner(System.in);
+		int storeno=scanner.nextInt();
+		System.out.println(storeService.event(storeno));
+		return storeService.event(storeno).toString();
 		
 	}
 

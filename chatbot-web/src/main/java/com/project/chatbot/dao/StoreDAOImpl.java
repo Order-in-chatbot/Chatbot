@@ -31,4 +31,9 @@ public class StoreDAOImpl implements StoreDAO {
 	public List<StoreVO> list(){
 		return sqlSessionTemplate.selectList("list");
 	}
+	
+	@Override
+	public String event(int storeno) {
+		return sqlSessionTemplate.selectOne("event",storeno);
+	}
 }
