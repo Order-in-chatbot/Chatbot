@@ -21,13 +21,12 @@ import com.project.chatbot.service.StoreService;
 @RestController
 public class ChatController {
 	
-	@Autowired
-	private StoreService storeService;
 	
 	@Autowired
 	private OrderService orderService;
-	
-	
+	@Autowired
+	private StoreService storeService;
+
 	@CrossOrigin("*")
 	@PostMapping(value = "/chat/open")
 	public Map<String, Object> open(@RequestBody Map<String, Object> data) {
@@ -35,33 +34,22 @@ public class ChatController {
 		System.out.println(data);
 		Integer storeNum = (int) data.get("storeNum");
 		
-	
 		Map<String, Object> answer = new HashMap<String, Object>();
 		
 		String storename=storeService.storefind(storeNum);
-		
-		System.out.println(storename);
+		String event=orderService.bestmenufind(storeNum);
 		
 		String message = String.format("안녕하세요 저희 지점은 %s입니다..", storename);
+		String message2 = String.format("오늘의 이벤트는 %s입니다..", event);	
 		
-		System.out.println(message);
-		
-		answer.put("position", "left");
-		answer.put("type", "text");
-		answer.put("text", message);
-		answer.put("date", new Date());
-		
-		//2개가 나오나??
-		String event=orderService.bestmenufind(storeNum);
-		System.out.println(event); 
-		String message2 = String.format("오늘의 이벤트는 %s입니다..", event);
+		String f_message=message.concat(message2);
 		
 		answer.put("position", "left");
 		answer.put("type", "text");
-		answer.put("text", message2);
+		answer.put("text", f_message);
 		answer.put("date", new Date());
-//		
-		//return chatService.open();
+		
+		//return ChatService.open();
 		//service 부분 보고 확인하기
 		return answer;
 
@@ -73,7 +61,6 @@ public class ChatController {
 		//Utils.stream(chatService.tts(data), res.getOutputStream());
 		
 		Map<String, Object> answer = new HashMap<String, Object>();
-		
 		
 		Integer storeNum = (int) data.get("storeNum");
 		

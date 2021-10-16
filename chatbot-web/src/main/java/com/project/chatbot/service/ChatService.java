@@ -17,9 +17,9 @@ import com.project.chatbot.dao.ChatDao;
 @Service
 public class ChatService {
 	//@Autowired CacheUtils cache;
-		private ChatDao chatDao=new ChatDao();
+		private static ChatDao chatDao=new ChatDao();
 		
-		public Map<String,Object> open() {
+		public static Map<String,Object> open() {
 			String json = chatDao.open(); //map형식으로 return
 			System.out.println(json);
 			
