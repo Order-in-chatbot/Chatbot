@@ -37,10 +37,8 @@ public class ChatController {
 	public Map<String, Object> open(@RequestBody Map<String, Object> data) {
 		
 		return chatService.open();
-		//service 부분 보고 확인하기
-		//return answer;
-
 	}
+	
 	@CrossOrigin("*")
 	@PostMapping(value = "/chat/store")
 	public Map<String, Object> selectstore(@RequestBody Map<String, Object> data) {
@@ -74,10 +72,10 @@ public class ChatController {
 	public Map message(@RequestBody Map<String, Object> data, HttpServletRequest req) throws IOException {
 		//Utils.stream(chatService.tts(data), res.getOutputStream());
 		
-//		Map<String, Object> answer = new HashMap<String, Object>();
-//	
-//		//data에서 storeno값을 가져와서 할 수 있나??
-//		//storeNum을 계속적으로 가져올 수 있는 방법을 찾아야한다.
+		Map<String, Object> answer = new HashMap<String, Object>();
+	
+		//data에서 storeno값을 가져와서 할 수 있나??
+		//storeNum을 계속적으로 가져올 수 있는 방법을 찾아야한다.
 //		System.out.println(data);
 //		Integer storeNum = (int) data.get("storeNum");
 //		
@@ -93,7 +91,7 @@ public class ChatController {
 //			//answer.put("text", message);
 //			answer.put("date", new Date());
 //		} else {
-//			answer = ChatService.message(data, req);
+//			answer = chatService.message(data, req);
 //		}
 //		
 //		return answer;

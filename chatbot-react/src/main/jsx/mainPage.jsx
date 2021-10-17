@@ -30,7 +30,7 @@ const Main = () => {
     const selectStore = (num) => {
         if (num === 1) {
             history.push({
-                pathname: "/sulbing",
+                pathname: "/mcdonalds",
                 props: { num: num }
             });
         }
@@ -42,7 +42,7 @@ const Main = () => {
         }
         else {
             history.push({
-                pathname: "/gongcha",
+                pathname: "/mcdonalds",
                 props: { num: num }
             });
         }
@@ -66,9 +66,9 @@ const Main = () => {
                             label="restaurant"
                             onChange={handleChange}
                         >
-                            <MenuItem value={1} >설빙</MenuItem>
-                            <MenuItem value={2} >맥도날드</MenuItem>
-                            <MenuItem value={3} >공차</MenuItem>
+                            <MenuItem value={1} >맥도날드 북수원 DT점</MenuItem>
+                            <MenuItem value={2} >맥도날드 수원정자 DT점</MenuItem>
+                            <MenuItem value={3} >맥도날드 안양점</MenuItem>
 
                         </Select>
                     </FormControl>
