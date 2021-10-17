@@ -61,7 +61,21 @@ const McChat = ({ location }) => {
             });
     };
 
+    const selectstore = () => {
+    
+        console.log("sdsds")
+        const url = `http://localhost:8080/chatbot/chat/store`;
+        fetch(url, {method:"POST", body: JSON.stringify({storeNum:storeNum}), headers:{"Access-Control-Allow-Origin":"*", "Content-Type":"application/json"}})
+            .then((res) => res.json())
+            .then((data) => {
+                setMessages(messages => [...messages, data]);
+            }).catch(()=>{
+                console.log("에러발생");
+            })
+    };
+    
     const openChat = () => {
+    
         const url = `http://localhost:8080/chatbot/chat/open`;
         fetch(url, {method:"POST", body: JSON.stringify({storeNum:storeNum}), headers:{"Access-Control-Allow-Origin":"*", "Content-Type":"application/json"}})
             .then((res) => res.json())
@@ -74,7 +88,7 @@ const McChat = ({ location }) => {
             })
     };
 
-    useEffect(openChat,[]);
+    useEffect(selectstore,[]);
     useEffect(tts, [speech])
 
     return (
@@ -104,7 +118,8 @@ const McChat = ({ location }) => {
                             />
                         }
                         rightButtons={
-                            <div onClick={()=>getAnswer()}>
+                            <div onClick={()=>{messages.length<2 ? openChat(): getAnswer()}}>
+                                
                                 <IconButton aria-label="전송" ><SendIcon/></IconButton>
                             </div>
                         }

@@ -36,7 +36,16 @@ public class ChatController {
 	@PostMapping(value = "/chat/open")
 	public Map<String, Object> open(@RequestBody Map<String, Object> data) {
 		
-		System.out.println(data);
+		return chatService.open();
+		//service ë¶€ë¶„ ë³´ê³  í™•ì¸í•˜ê¸°
+		//return answer;
+
+	}
+	@CrossOrigin("*")
+	@PostMapping(value = "/chat/store")
+	public Map<String, Object> selectstore(@RequestBody Map<String, Object> data) {
+		
+		System.out.println("dsfsdf");
 		Integer storeNum = (int) data.get("storeNum");
 		
 		Map<String, Object> answer = new HashMap<String, Object>();
@@ -44,18 +53,18 @@ public class ChatController {
 		String storename=storeService.storefind(storeNum);
 		String event=storeService.event(storeNum);
 		
-		String message = String.format("¾È³çÇÏ¼¼¿ä ÀúÈñ ÁöÁ¡Àº %sÀÔ´Ï´Ù.\n", storename);
-		String message2 = String.format("ÇöÀç ÁøÇàÇÏ´Â ÀÌº¥Æ®´Â %sÀÔ´Ï´Ù.\n", event);	
+		String message = String.format("ì•ˆë…•í•˜ì„¸ìš” ì €í¬ ì§€ì ì€ %sì…ë‹ˆë‹¤.\n", storename);
+		String message2 = String.format("í˜„ì¬ ì§„í–‰í•˜ëŠ” ì´ë²¤íŠ¸ëŠ” %sì…ë‹ˆë‹¤.\n", event);	
+		
+		//Map<String, Object> return_object = (Map<String, Object>) map.get("return_object");
 		
 		String f_message=message.concat(message2);
-		
+		//String uuid = (String) return_object.get("uuid");
 		answer.put("position", "left");
 		answer.put("type", "text");
 		answer.put("text", f_message);
 		answer.put("date", new Date());
 		
-		//return ChatService.open();
-		//service ºÎºĞ º¸°í È®ÀÎÇÏ±â
 		return answer;
 
 	}
@@ -67,18 +76,18 @@ public class ChatController {
 		
 //		Map<String, Object> answer = new HashMap<String, Object>();
 //	
-//		//data¿¡¼­ storeno°ªÀ» °¡Á®¿Í¼­ ÇÒ ¼ö ÀÖ³ª??
-//		//storeNumÀ» °è¼ÓÀûÀ¸·Î °¡Á®¿Ã ¼ö ÀÖ´Â ¹æ¹ıÀ» Ã£¾Æ¾ßÇÑ´Ù.
+//		//dataì—ì„œ storenoê°’ì„ ê°€ì ¸ì™€ì„œ í•  ìˆ˜ ìˆë‚˜??
+//		//storeNumì„ ê³„ì†ì ìœ¼ë¡œ ê°€ì ¸ì˜¬ ìˆ˜ ìˆëŠ” ë°©ë²•ì„ ì°¾ì•„ì•¼í•œë‹¤.
 //		System.out.println(data);
 //		Integer storeNum = (int) data.get("storeNum");
 //		
 //		String product = storeService.event(storeNum); 
-//		String message = String.format("°¡Àå ¸¹ÀÌ ÆÈ¸®´Â Á¦Ç°Àº %s ÀÔ´Ï´Ù.", product);
+//		String message = String.format("ê°€ì¥ ë§ì´ íŒ”ë¦¬ëŠ” ì œí’ˆì€ %s ì…ë‹ˆë‹¤.", product);
 //		
 //		System.out.println(data);
 //		Map question = (Map) data.get("question");
 //		
-//		if(question.get("text").equals("°¡Àå ¸¹ÀÌ ÆÈ¸®´Â Á¦Ç° ¾Ë·ÁÁà")) {
+//		if(question.get("text").equals("ê°€ì¥ ë§ì´ íŒ”ë¦¬ëŠ” ì œí’ˆ ì•Œë ¤ì¤˜")) {
 //			answer.put("position", "left");
 //			answer.put("type", "text");
 //			//answer.put("text", message);
