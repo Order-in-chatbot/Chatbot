@@ -31,34 +31,7 @@ public class ChatController {
 		this.chatService = chatService;
 	}
 
-	@RequestMapping(value = "/storelist")
-	@ResponseBody
-	public String storelist() {
-		return storeService.list().toString();
-	}
-
-	@RequestMapping(value = "/api")
-	@GetMapping("/storeCode")
-	public int storeNum(@RequestBody StNumVO stNumVO) {
-		return stNumVO.getStoreNum();
-	}
-
-	@RequestMapping(value = "/storefind")
-	public String storefind(StNumVO stNumVO) {
-		return storeService.storefind(storeNum(stNumVO)).toString();
-	}
-
-	@RequestMapping(value = "/bestmenu")
-	public String bestmenu(StNumVO stNumVO) {
-		return orderService.bestmenufind(storeNum(stNumVO)).toString();
-
-	}
-
-	@RequestMapping(value = "/event")
-	public String event(StNumVO stNumVO) {
-		return storeService.event(storeNum(stNumVO)).toString();
-
-	}
+	
 
 	@CrossOrigin("*")
 	@PostMapping(value = "/chat/open")
