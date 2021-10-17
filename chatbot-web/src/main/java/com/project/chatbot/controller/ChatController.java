@@ -29,6 +29,8 @@ public class ChatController {
 	private OrderService orderService;
 	@Autowired
 	private StoreService storeService;
+	@Autowired
+	ChatService chatService;
 
 	@CrossOrigin("*")
 	@PostMapping(value = "/chat/open")
@@ -63,32 +65,29 @@ public class ChatController {
 	public Map message(@RequestBody Map<String, Object> data, HttpServletRequest req) throws IOException {
 		//Utils.stream(chatService.tts(data), res.getOutputStream());
 		
-		Map<String, Object> answer = new HashMap<String, Object>();
-	
-		//data에서 storeno값을 가져와서 할 수 있나??
-		//storeNum을 계속적으로 가져올 수 있는 방법을 찾아야한다.
-		//System.out.println(data);
-		//Integer storeNum = (int) data.get("storeNum");
-		
-		//String product = storeService.event(storeNum); 
-		//String message = String.format("가장 많이 팔리는 제품은 %s 입니다.", product);
-		
-		System.out.println(data);
-		Map question = (Map) data.get("question");
-		
-		if(question.get("text").equals("가장 많이 팔리는 제품 알려줘")) {
-			answer.put("position", "left");
-			answer.put("type", "text");
-			//answer.put("text", message);
-			answer.put("date", new Date());
-		} else {
-			answer = ChatService.message(data, req);
-		}
-		
-		return answer;
-		
-		//넘어가는 부분???????
-	}
-	
-
+//		Map<String, Object> answer = new HashMap<String, Object>();
+//	
+//		//data에서 storeno값을 가져와서 할 수 있나??
+//		//storeNum을 계속적으로 가져올 수 있는 방법을 찾아야한다.
+//		System.out.println(data);
+//		Integer storeNum = (int) data.get("storeNum");
+//		
+//		String product = storeService.event(storeNum); 
+//		String message = String.format("가장 많이 팔리는 제품은 %s 입니다.", product);
+//		
+//		System.out.println(data);
+//		Map question = (Map) data.get("question");
+//		
+//		if(question.get("text").equals("가장 많이 팔리는 제품 알려줘")) {
+//			answer.put("position", "left");
+//			answer.put("type", "text");
+//			//answer.put("text", message);
+//			answer.put("date", new Date());
+//		} else {
+//			answer = ChatService.message(data, req);
+//		}
+//		
+//		return answer;
+		return chatService.message(data, req);
+	}	
 }
