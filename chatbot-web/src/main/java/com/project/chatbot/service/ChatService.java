@@ -33,12 +33,16 @@ public class ChatService {
 				System.out.println(map);
 				
 				Map<String,Object> return_object=(Map) map.get("return_object");
-				System.out.println(return_object);
+				//System.out.println(return_object);
 				
 				String uuid=(String) return_object.get("uuid");
 				
+				
 				Map<String,Object>result=(Map<String, Object>) return_object.get("result");
 				String text=(String) result.get("system_text");
+				
+				System.out.println(text);
+				
 				
 				Map<String,Object>submap=new HashMap<String, Object>();
 				submap.put("id", "user");

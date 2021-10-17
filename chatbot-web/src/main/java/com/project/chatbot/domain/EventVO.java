@@ -1,5 +1,8 @@
 package com.project.chatbot.domain;
 
+import org.apache.ibatis.type.Alias;
+
+//@Alias("EventVO")
 public class EventVO {
 	private int storeno;
 	private String eventtitle;
