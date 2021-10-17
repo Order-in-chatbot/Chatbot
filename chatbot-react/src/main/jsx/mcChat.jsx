@@ -93,7 +93,7 @@ const McChat = ({ location }) => {
 		</div>
                     <Input
                         placeholder="메시지를 입력하시오"
-                        multiline={false}
+                        multiline={true}
                         onChange={(e)=>setQuestion(e.target.value)}
                         defaultValue={question}
                         leftButtons={

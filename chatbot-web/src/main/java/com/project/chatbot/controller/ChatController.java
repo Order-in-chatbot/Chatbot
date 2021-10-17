@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import com.project.chatbot.service.ChatService;
 import com.project.chatbot.service.OrderService;
@@ -61,11 +64,14 @@ public class ChatController {
 		//Utils.stream(chatService.tts(data), res.getOutputStream());
 		
 		Map<String, Object> answer = new HashMap<String, Object>();
+	
+		//data에서 storeno값을 가져와서 할 수 있나??
+		//storeNum을 계속적으로 가져올 수 있는 방법을 찾아야한다.
+		//System.out.println(data);
+		//Integer storeNum = (int) data.get("storeNum");
 		
-		Integer storeNum = (int) data.get("storeNum");
-		
-		String product = storeService.event(storeNum); // chatService.getBestSeller();   //select productName, count(*) from product where storeNum = 1 group by productName limit 1; 
-		String message = String.format("가장 많이 팔리는 제품은 %s 입니다.", product);
+		//String product = storeService.event(storeNum); 
+		//String message = String.format("가장 많이 팔리는 제품은 %s 입니다.", product);
 		
 		System.out.println(data);
 		Map question = (Map) data.get("question");
@@ -73,7 +79,7 @@ public class ChatController {
 		if(question.get("text").equals("가장 많이 팔리는 제품 알려줘")) {
 			answer.put("position", "left");
 			answer.put("type", "text");
-			answer.put("text", message);
+			//answer.put("text", message);
 			answer.put("date", new Date());
 		} else {
 			answer = ChatService.message(data, req);
@@ -83,5 +89,6 @@ public class ChatController {
 		
 		//넘어가는 부분???????
 	}
+	
 
 }

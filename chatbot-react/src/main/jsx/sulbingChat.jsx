@@ -50,7 +50,7 @@ const SulbingChat = ({ location }) => {
         };
 
         setMessages([...messages, answer]); //질문
-        const url = `http://localhost:8089/chatbot/chat/message`;
+        const url = `http://localhost:8080/chatbot/chat/message`;
         fetch(url, {method:"POST", body: JSON.stringify({question:answer, uuid:uuid}), headers:{"Access-Control-Allow-Origin":"*", "Content-Type":"application/json"} })
             .then((res) => res.json())
             .then((data) => {
