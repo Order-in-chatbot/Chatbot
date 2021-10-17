@@ -22,6 +22,9 @@ public class ChatDao {
 		public String open() {
 			String openApiURL = "http://aiopen.etri.re.kr:8000/Dialog";
 	        String accessKey = ACCESS_KEY;    // 발급받은 API Key
+	        
+	        //serivce.selectdomain 으로 처리하기 -> if(service.selectdomain=='맥도날드') String domain=="Mc_donald"; else String domain="공차"; 
+	        
 	        String domain = "Mc_donald";          // 도메인 명
 	        String access_method = "internal_data";   // 도메인 방식
 	        String method = "open_dialog";                      // method 호출 방식

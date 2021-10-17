@@ -66,7 +66,7 @@ const McChat = ({ location }) => {
         fetch(url, {method:"POST", body: JSON.stringify({storeNum:storeNum}), headers:{"Access-Control-Allow-Origin":"*", "Content-Type":"application/json"}})
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.uuid);
+                console.log(uuid)
                 setUuid(data.uuid);
                 setMessages(messages => [...messages, data]);
             }).catch(()=>{

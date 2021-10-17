@@ -37,10 +37,10 @@ public class ChatController {
 		Map<String, Object> answer = new HashMap<String, Object>();
 		
 		String storename=storeService.storefind(storeNum);
-		String event=orderService.bestmenufind(storeNum);
+		String event=storeService.event(storeNum);
 		
-		String message = String.format("안녕하세요 저희 지점은 %s입니다..", storename);
-		String message2 = String.format("오늘의 이벤트는 %s입니다..", event);	
+		String message = String.format("안녕하세요 저희 지점은 %s입니다.\n", storename);
+		String message2 = String.format("현재 진행하는 이벤트는 %s입니다.\n", event);	
 		
 		String f_message=message.concat(message2);
 		
@@ -64,7 +64,7 @@ public class ChatController {
 		
 		Integer storeNum = (int) data.get("storeNum");
 		
-		String product = orderService.bestmenufind(storeNum); // chatService.getBestSeller();   //select productName, count(*) from product where storeNum = 1 group by productName limit 1; 
+		String product = storeService.event(storeNum); // chatService.getBestSeller();   //select productName, count(*) from product where storeNum = 1 group by productName limit 1; 
 		String message = String.format("가장 많이 팔리는 제품은 %s 입니다.", product);
 		
 		System.out.println(data);
