@@ -2,7 +2,7 @@ package com.project.chatbot.domain;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("storeVO")
+//@Alias("storeVO")
 public class StoreVO {
 	private int storeno;
 	private String storename;
