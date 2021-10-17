@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import 'react-simple-chat/src/components/index.css';
-import './mcChatStyle.scss';
+import './storeChatStyle.scss';
 
 // RCE CSS
 import 'react-chat-elements/dist/main.css';
@@ -15,7 +15,7 @@ import { Input } from 'react-chat-elements'
 
 import Vocal from '@untemps/react-vocal'
 
-const McChat = ({ location }) => {
+const StoreChat = ({ location }) => {
 
     //변수 선언
     const [messages, setMessages] = useState([]);
@@ -80,7 +80,7 @@ const McChat = ({ location }) => {
     return (
         <div>
             <Card sx={{height:'96vh', marginTop:'1vh'}}>
-                <CardContent style={{backgroundColor:'yellow', height:'82vh', opacity: '0.8'}}>
+                <CardContent style={{backgroundColor:'brown', height:'82vh'}}>
                     <MessageList
                         className='message-list'
                         lockable={true}
@@ -115,4 +115,4 @@ const McChat = ({ location }) => {
     );
 };
 
-export default McChat;
+export default StoreChat;
