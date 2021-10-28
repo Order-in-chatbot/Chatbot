@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import 'react-simple-chat/src/components/index.css';
-import './gongchaChatStyle.scss';
+import './storeChatStyle.scss';
 
 // RCE CSS
 import 'react-chat-elements/dist/main.css';
@@ -15,7 +15,7 @@ import { Input } from 'react-chat-elements'
 
 import Vocal from '@untemps/react-vocal'
 
-const GongchaChat = ({ location }) => {
+const StoreChat = ({ location }) => {
 
     //변수 선언
     const [messages, setMessages] = useState([]);
@@ -115,4 +115,4 @@ const GongchaChat = ({ location }) => {
     );
 };
 
-export default GongchaChat;
+export default StoreChat;
